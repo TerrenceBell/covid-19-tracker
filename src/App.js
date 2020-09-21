@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { MenuItem, FormControl, Select, InputLabel, Card, CardContent} from "@material-ui/core";
 import Infobox from './InfoBox';
 import Map from './Map';
+import Table from './Table';
 import './App.css';
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('Worldwide');
   const [countryInfo, SetCountryInfo] = useState({})
+  const [tableData, setTableData] = useState([])
 
   useEffect(() => { 
     fetch("https://disease.sh/v3/covid-19/all")
@@ -34,7 +36,7 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }))
-
+          setTableData(data)
           setCountries(countries)
       })
     }
@@ -88,24 +90,12 @@ function App() {
             <Infobox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
             <Infobox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
           </div>
-
-     
-
-      {/* Header */}
-      {/* Title + Drop down */}
-
-      
-
-      {/* table */}
-      {/* graph */}
-
-      {/* map */}
-          <Map></Map>
+          <Map />
       </div>
         <Card className="app__right">
           <CardContent>
             <h3>Live Cases by Country</h3>
-            {/* table */}
+            <Table countries={tableData} />
             <h3>Worldwide New Cases</h3>
             {/* graph */}
           </CardContent>
