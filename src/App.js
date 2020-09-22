@@ -7,6 +7,7 @@ import { sortData } from './util';
 import './App.css';
 import LineGraph from './LineGraph';
 import "leaflet/dist/leaflet.css";
+import { printStat } from './util'
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -97,9 +98,9 @@ function App() {
 
       </div>
           <div className="app__stats">
-            <Infobox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} />
-            <Infobox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
-            <Infobox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
+            <Infobox title="Coronavirus Cases" cases={printStat(countryInfo.todayCases)} total={printStat(countryInfo.cases)} />
+            <Infobox title="Recovered" cases={printStat(countryInfo.todayRecovered)} total={printStat(countryInfo.recovered)} />
+            <Infobox title="Deaths" cases={printStat(countryInfo.todayDeaths)} total={printStat(countryInfo.deaths)} />
           </div>
           <Map
             countries={mapCountries} 

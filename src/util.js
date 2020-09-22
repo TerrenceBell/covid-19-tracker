@@ -25,6 +25,11 @@ const casesTypeColors = {
     }
 }
 
+//take stat that is number and return nicely formatted string
+export const printStat = (stat) =>  
+    stat ? `+${numeral(stat).format("0.0a")}` : "+0";
+
+
 
 //this function sorts the table by cases from largest to smallest
 // then its imported into app.js to funciton
