@@ -15,6 +15,7 @@ function App() {
   const [tableData, setTableData] = useState([])
   const [mapCenter, setMapCenter] = useState({ lat: 34.80748, lng: -40.4796 })
   const [mapZoom, setMapZoom] = useState(3)
+  const [mapCountries, setMapCountries] = useState([])
 
   useEffect(() => { 
     fetch("https://disease.sh/v3/covid-19/all")
@@ -43,7 +44,9 @@ function App() {
           }))
           const sortedData = sortData(data)
           setTableData(sortedData)
+          setMapCountries(data)
           setCountries(countries)
+
       })
     }
     getCountriesData()
@@ -63,6 +66,9 @@ function App() {
       setCountry(countryCode)
       //all country data
       SetCountryInfo(data)
+      //On the change the map will move the default center to the country of choice. This is info from the api also... Thats pretty cool bruv
+      setMapCenter([data.countryInfo.lat, data.countryInfo.long])
+      setMapZoom(4);
     })
   };
   //console.log("country info", countryInfo)
@@ -95,7 +101,8 @@ function App() {
             <Infobox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
             <Infobox title="Deaths" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
           </div>
-          <Map 
+          <Map
+            countries={mapCountries} 
             center={mapCenter}
             zoom={mapZoom}
           />

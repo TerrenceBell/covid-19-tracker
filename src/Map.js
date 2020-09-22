@@ -9,6 +9,7 @@ function Map({ center, zoom }) {
                 <TileLayer 
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'/>
+                {/* loop through ccountries and draw red circles on the screen */}
             </LeafletMap>
         </div>
     )
