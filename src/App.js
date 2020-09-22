@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MenuItem, FormControl, Select, InputLabel, Card, CardContent} from "@material-ui/core";
+import { MenuItem, FormControl, Select, Card, CardContent} from "@material-ui/core";
 import Infobox from './InfoBox';
 import Map from './Map';
 import Table from './Table';
@@ -19,7 +19,7 @@ function App() {
     .then((data) => { 
       SetCountryInfo(data)
     })
-  })
+  }, [])
   
   //State is basically writing a variable in react
   //API call for countries from "https://disease.sh/v3/covid-19/countries"
@@ -69,7 +69,6 @@ function App() {
       <div className="app__header">
       <h1>COVID-19 TRACKER</h1>
       <FormControl className="app__dropdown"> 
-      {/* <InputLabel>Worldwide</InputLabel> */}
         <Select variant="outlined" onChange={onCountryChange} value={country}>
         <MenuItem value="Worldwide">Worldwide</MenuItem>
           {/* loop through all countries 
@@ -101,7 +100,6 @@ function App() {
             <Table countries={tableData} />
             <h3>Worldwide New Cases</h3>
             <LineGraph />
-            {/* graph */}
           </CardContent>
         </Card>
     </div>
