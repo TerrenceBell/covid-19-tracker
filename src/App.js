@@ -26,7 +26,7 @@ function App() {
       SetCountryInfo(data)
     })
   }, [])
-  
+  //testing something
   //State is basically writing a variable in react
   //API call for countries from "https://disease.sh/v3/covid-19/countries"
   //API call for worldwide from "https://disease.sh/v3/covid-19/all

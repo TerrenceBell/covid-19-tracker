@@ -10,7 +10,7 @@ function infoBox({title, cases, isRed, active, total, ...props}) {
              <Typography color="textSecondary">{title}</Typography>
 
              {/* number of cases */}
-             <h2 className={`"infobox__cases" ${!isRed && "infobox__cases--green"}`}>{cases}</h2>
+             <h2 className={`infobox__cases ${!isRed && "infobox__cases--green"}`}>{cases}</h2>
 
              {/* total */}
              <Typography className="infobox__title" color="textSecondary">{total} Total</Typography>
