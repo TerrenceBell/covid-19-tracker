@@ -47,7 +47,7 @@ const options = {
 }
 //tooltips are to be able to hover over the graph and see the value at that specific point
 
-const buildChartData = (data, casesType = 'cases') => { 
+const buildChartData = (data, casesType) => { 
     const chartData = []
     let lastDataPoint
 
@@ -65,7 +65,7 @@ const buildChartData = (data, casesType = 'cases') => {
     return chartData
 }
 
-function LineGraph({ casesType = 'cases'}) {
+function LineGraph({ casesType, ...props }) {
     const [data, setData] = useState({});
     //API call for last 120 days of data  "https://disease.sh/v3/covid-19/historical/all?lastdays=120"
 
@@ -77,7 +77,7 @@ function LineGraph({ casesType = 'cases'}) {
         .then(resp => resp.json())
         .then(data => { 
             console.log(data)
-            const chartData = buildChartData(data)
+            let chartData = buildChartData(data, casesType)
             setData(chartData)
         })
         }
@@ -87,7 +87,8 @@ function LineGraph({ casesType = 'cases'}) {
     
     
     return (
-        <div>            
+        //
+        <div className={props.className}>            
             {data?.length > 0 && ( 
                 <Line  
                 options={options}
